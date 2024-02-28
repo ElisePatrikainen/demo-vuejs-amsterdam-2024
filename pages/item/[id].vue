@@ -13,13 +13,13 @@ const queryClient = useQueryClient()
 let currentId = route.params.id as string
 onBeforeRouteUpdate((to) => currentId = to.params.id as string)
 
-const getPlaceholderData = (id: string) => {
-  return queryClient.getQueryData(itemsQuery.queryKey)?.find(item => item.id === Number(id))
-}
-const placeholderData = computed(() => getPlaceholderData(currentId))
+// const getPlaceholderData = (id: string) => {
+//   return queryClient.getQueryData(itemsQuery.queryKey)?.find(item => item.id === Number(id))
+// }
+// const placeholderData = computed(() => getPlaceholderData(currentId))
 
 // Query depending on an ID
-const { data: item, suspense } = useQuery(itemQuery(currentId, placeholderData.value))
+const { data: item } = useQuery(itemQuery(currentId))
 
 const { mutate } = useMutation({
   mutationFn: () => $fetch(`/api/item/${currentId}`, { method: "POST" }),

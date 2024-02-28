@@ -24,7 +24,7 @@ data.value = await $fetch<Item[]>(`/api/products`)
 // const { isError, data, suspense } = useQuery(itemsQuery)
 
 // 4. Prefetch
-const prefetch = (id: number) => queryClient.prefetchQuery(itemQuery(id.toString()))
+// const prefetch = (id: number) => queryClient.prefetchQuery(itemQuery(id.toString()))
 
 </script>
 
@@ -36,7 +36,7 @@ const prefetch = (id: number) => queryClient.prefetchQuery(itemQuery(id.toString
     <div v-else class="flex flex-wrap">
       <div v-for="item in data">
         <!--  add prefetch here : @mouseover="prefetch(item.id)" -->
-        <Item :product="item" @mouseover="prefetch(item.id)"></Item>
+        <Item :product="item"></Item>
       </div>
     </div>
   </main>
